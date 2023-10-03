@@ -21,5 +21,6 @@
     <br>
     <?php include_once($ESTRUCTURA."/pie.php"); ?>
     <script src="<?php echo $JS?>/validar.js"></script>
+    <h1>Pueba</h1>
 </body>
 </html>
