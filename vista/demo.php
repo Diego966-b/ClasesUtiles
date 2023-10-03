@@ -14,5 +14,6 @@
 
     <?php include_once($ESTRUCTURA."/pie.php"); ?>
     <script src="<?php echo $JS?>/validar.js"></script>
+    <!-- prueba -->
 </body>
 </html>
