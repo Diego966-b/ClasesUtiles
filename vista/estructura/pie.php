@@ -17,7 +17,7 @@
             <p class="text-light">Joaquin Calvin</p>
         </div>  
         <div class="col personaGrupo">
-            <p class="text-light">Julian Alcatraz</p>
+            <p class="text-light">Julian Alcaraz</p>
         </div>  
     </div>
 </footer>
