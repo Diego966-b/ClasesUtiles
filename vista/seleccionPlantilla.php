@@ -13,7 +13,7 @@
     }
     .margenInferior {
         margin-bottom: 90px;
-    }
+    }   
 </style>
 <div class=" margenInferior d-flex  justify-content-center">
     <div class="container  border m-4">
