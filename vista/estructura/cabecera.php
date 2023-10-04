@@ -4,7 +4,7 @@
     $colPaginas [2] = "Demo";
 ?>
 <div class="bg-dark sticky-top">
-    <p class="text-white text-center fs-1 m-0">TP Clases Utiles</p>
+    <p class="text-white text-center fs-4 m-0">TP Clases Utiles</p>
     <div class="d-flex justify-content-center">
 <?php
     for ($i = 1; $i <= 2; $i++) {
