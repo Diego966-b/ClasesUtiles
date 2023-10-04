@@ -13,6 +13,6 @@
     <h1 class="text-center">Demo</h1>
 
     <?php include_once($ESTRUCTURA."/pie.php"); ?>
-    <script src="<?php echo $JS?>/validar.js"></script>
+    <script src="<?php echo $JS?>/validarPlantilla.js"></script>
 </body>
 </html>
