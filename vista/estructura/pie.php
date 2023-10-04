@@ -1,23 +1,22 @@
 <?php
 
 ?>
-<link type="text/css" rel="stylesheet" href="<?php echo $CSS;?>/pie.css"> 
 <footer class="fixed-bottom row footer bg-dark bg-gradient">
     <div class="row">
-        <p class="text-light text-center">Integrantes del grupo</p>
+        <p class="text-light text-center mb-2">Integrantes del grupo</p>
     </div>
-    <div class="integrantes">
-        <div class="col personaGrupo">
-            <p class="text-light">Diego Benjamin</p>
+    <div class="d-flex justify-content-between">
+        <div class="col text-center">
+            <p class="text-light mb-2">Diego Benjamin</p>
         </div>
-        <div class="col personaGrupo">
-            <p class="text-light">Marco Galan</p>
+        <div class="col text-center">
+            <p class="text-light mb-2">Marco Galan</p>
         </div>
-        <div class="col personaGrupo">
-            <p class="text-light">Joaquin Calvin</p>
+        <div class="col text-center">
+            <p class="text-light mb-2">Joaquin Calvin</p>
         </div>  
-        <div class="col personaGrupo">
-            <p class="text-light">Julian Alcatraz</p>
+        <div class="col text-center">
+            <p class="text-light mb-2">Julian Alcatraz</p>
         </div>  
     </div>
 </footer>
