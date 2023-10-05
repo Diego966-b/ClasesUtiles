@@ -15,13 +15,8 @@
         <div class="col text-center">
             <p class="text-light mb-2">Joaquin Calvin</p>
         </div>  
-<<<<<<< HEAD
-        <div class="col personaGrupo">
-            <p class="text-light">Julian Alcaraz</p>
-=======
         <div class="col text-center">
-            <p class="text-light mb-2">Julian Alcatraz</p>
->>>>>>> b1d0fa74a14a0f7fda39d22bf5588239d01afda4
+            <p class="text-light">Julian Alcaraz</p>
         </div>  
     </div>
 </footer>

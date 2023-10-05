@@ -1,17 +1,15 @@
 <?php header('Content-Type: text/html; charset=utf-8');
 header ("Cache-Control: no-cache, must-revalidate ");
 
-<<<<<<< HEAD
-$PROYECTO = 'librerias/ClasesUtiles'; 
-=======
-$PROYECTO = 'Web/ClasesUtiles'; 
->>>>>>> 9e4495f2ce5fdccd4b85b71b1d7115c03fd1d6a2
+$PROYECTO = 'ClasesUtiles'; 
 //variable que almacena el directorio del proyecto
 $ROOT = $_SERVER['DOCUMENT_ROOT']."/$PROYECTO/";
 $_SESSION['ROOT'] = $ROOT;
 
 // Archivo funciones: 
 include_once($ROOT.'utils/funciones.php');
+include_once ($ROOT."utils/domPdf/vendor/autoload.php");
+include_once ($ROOT."utils/laminasMail/vendor/autoload.php");
 
 $ESTRUCTURA = $ROOT.'vista/estructura';
 $VISTA = '/'.$PROYECTO.'/vista';

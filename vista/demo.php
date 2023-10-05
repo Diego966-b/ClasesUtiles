@@ -9,9 +9,8 @@
 </head>
 <body>
     <?php include_once($ESTRUCTURA."/cabecera.php"); ?>
-
     <h1 class="text-center">Demo</h1>
-
+    <?php include_once("seleccionPlantilla.php"); ?>
     <?php include_once($ESTRUCTURA."/pie.php"); ?>
     <script src="<?php echo $JS?>/validarPlantilla.js"></script>
 </body>

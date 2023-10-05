@@ -27,8 +27,7 @@
                 <h3 class="text-center mt-2 ">Seleccione la plantilla Deseada</h3>
             </div>
         </div>
-        <form name="plantillaForm" id="plantillaForm" action="">
-
+        <form name="plantillaForm" id="plantillaForm" action="formulario.php">
             <div class="row row-cols-lg-auto ">
                 <div class="container text-center ">
                     <div class="row">
@@ -38,7 +37,7 @@
                             </div>
                             Plantilla 1
                             <div class="form-check  d-flex  justify-content-center ">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="3">
+                                <input class="form-check-input" type="radio" name="tipoPlantilla" id="tipoPlantilla" value="3">
                             </div>
                         </div>
                         <div class="col  p-3 m-3">
@@ -47,7 +46,7 @@
                             </div>
                             Plantilla 2
                             <div class="form-check d-flex  justify-content-center  ">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="3" checked>
+                                <input class="form-check-input" type="radio" name="tipoPlantilla" id="tipoPlantilla" value="3" checked>
                             </div>
                         </div>
                         <div class="col  p-3 m-3">
@@ -56,7 +55,7 @@
                             </div>
                             Plantilla 3
                             <div class="form-check d-flex  justify-content-center ">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="3">
+                                <input class="form-check-input" type="radio" name="tipoPlantilla" id="tipoPlantilla" value="3">
                             </div>
                         </div>
                     </div>
