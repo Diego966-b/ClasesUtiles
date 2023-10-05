@@ -25,7 +25,7 @@
         include "plantillaCv/plantilla.php";
         $contenido = ob_get_clean();
 
-        $nombrePdf = "cvNro".rand(1, 100);
+        $nombrePdf = $nombre."-".$apellido."CV.pdf";
 
         // Opciones para prevenir errores con carga de imágenes
         $options = new Options();
@@ -41,10 +41,11 @@
         // Salida para descargar
         
         // $dompdf->stream($nombrePdf . ".pdf", ['Attachment' => false]); Muestra el PDF
-        
+        // $dompdf->stream($nombrePdf . ".pdf", ['Attachment' => true]); Descarga el PDF
+
         // Guardar el PDF en un archivo
         $archivoPdf = $dompdf->output();
-        $ubicacionPdf = 'archivos/' . $nombrePdf . '.pdf';
+        $ubicacionPdf = 'archivos/' . $nombrePdf;
         file_put_contents($ubicacionPdf, $archivoPdf);
     } 
     catch (Exception $e) 

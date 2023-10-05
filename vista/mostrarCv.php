@@ -18,7 +18,7 @@
         <div class="col p-2 mb-2">
             <div class="container-cv container-lg">
                 <?php include_once("action/crearCv.php");?>
-                <embed src="<?php echo "archivos/".$nombrePdf.".pdf"; ?> #toolbar=0&navpanes=0&scrollbar=0" type="application/pdf" width="100%" height="600px"/>
+                <embed src="<?php echo "archivos/".$nombrePdf; ?> #toolbar=0&navpanes=0&scrollbar=0" type="application/pdf" width="100%" height="600px"/>
             </div>
         </div>
          <section class="col-sm-3 p-2">
@@ -29,13 +29,15 @@
                         <path fill-rule="evenodd" d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
                     </svg>
                 </button>
-                <button class="btn btn-primary">
-                    Enviar Correo <img src="imagenes/mensaje.gif" alt="" style="width: 25px; height: 25px;">
-                </button>
+                <form method="post" name="enviar" id="enviar" action="enviarCorreo.php">
+                    <input class="btn btn-primary" type="submit" value="Enviar Correo">
+                        <!-- Enviar Correo <img src="imagenes/mensaje.gif" alt="" style="width: 25px; height: 25px;"> -->
+                    <input type="text" value="<?php echo $nombrePdf?>" name="nombrePdf" id="nombrePdf" hidden>
+                </form>
             </div>
         </section>
     </div>
-    
+
     <?php include_once($ESTRUCTURA . "/pie.php"); ?>
     <script src="<?php echo $JS ?>/validar.js"></script>
     <style>

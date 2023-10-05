@@ -227,14 +227,7 @@ class Curriculum
 
     // Método __toString
 
-    /**
-     * Devuelve en un string los valores de los atributos
-     * @return string
-     *
-     * public function __toString ()
-     * {
-     *     $frase = "";
-     *     return $frase;
-     * }
-     */
+    public function __toString()
+    {
+    }
 }

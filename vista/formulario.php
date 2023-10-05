@@ -30,7 +30,7 @@
             <input type="number" id="telefono" name="telefono" class="form-control" value="1651651561867">
             <!-- Mail: -->
             <label for="mail" class="form-label">Mail:</label>
-            <input type="email" id="mail" name="mail" class="form-control" value="diego@gmail.com">
+            <input type="email" id="mail" name="mail" class="form-control" value="diegobennjaminn@gmail.com">
             <!-- Estudios: -->
             <label for="estudios" class="form-label">Estudios:</label>
             <textarea class="form-control" id="estudios" name="estudios" rows="3" >grdikopjgdoiugphdrjgipordpjgrdoipgrjdgrdgioprdjhgioprdagjsgrdikopjgdoiugphdrjgipordpjgrdoipgrjdgrdgioprdjhgioprdagjsdroipgjdsrog90isrdjgosidrdroipgjdsrog90isrdjgosidr</textarea>

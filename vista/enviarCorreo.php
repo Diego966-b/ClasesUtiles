@@ -19,6 +19,8 @@
 <?php
 include_once("../config.php");
 $pagSeleccionada = "Demo";
+$colDatos = devolverDatos();
+print_r($colDatos);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,28 +45,25 @@ $pagSeleccionada = "Demo";
                 </div>
             </div>
             <div class="container">
-                <form name="mailForm" id="mailForm" action="">
+                <form method="post" name="mailForm" id="mailForm" action="action/crearCorreo.php">
+                    <input type="text" value="<?php echo $colDatos["nombrePdf"];?>" name="nombrePdf" id="nombrePdf" hidden>
                     <div class="mb-3">
                         <label for="emisor" class="form-label fw-bold">Nombre Emisor:</label>
-                        <input type="text" class="form-control" id="emisor" name="emisor">
+                        <input type="text" class="form-control" id="emisor" name="emisor" value="emisor">
                     </div>
                     <div class="mb-3">
                         <label for="destinatario" class="form-label  fw-bold">Email Destino:</label>
-                        <input type="email" class="form-control" id="destinatario" name="destinatario">
+                        <input type="email" class="form-control" id="destinatario" name="destinatario" value="diegobennjaminn@gmail.com">
                     </div>
                     <div class="mb-3">
                         <label for="asunto" class="form-label fw-bold">Asunto:</label>
-                        <input type="text" class="form-control" id="asunto" name="asunto">
+                        <input type="text" class="form-control" id="asunto" name="asunto" value="asuntodwadwa">
                     </div>
-                    <!-- input para enviar el pdf -->
-                    <input type="file" class="form-control" id="asunto" name="asunto" style="display: none;" value="" >
-
                     <div class="row">
                         <div class="d-flex justify-content-center my-2 ">
                             <button type="submit" class="btn btn-primary">Enviar</button>
                         </div>
                     </div>
-
                 </form>
             </div>
         </div>
