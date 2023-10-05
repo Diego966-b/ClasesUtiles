@@ -1,6 +1,6 @@
 <?php
-include_once("../config.php");
-$pagSeleccionada = "Mostrar CV";
+    include_once("../config.php");
+    $pagSeleccionada = "Mostrar CV";
 ?>
 
 <!DOCTYPE html>
@@ -17,8 +17,8 @@ $pagSeleccionada = "Mostrar CV";
     <div class="container-fluid">
         <div class="col p-2 mb-2">
             <div class="container-cv container-lg">
-                <?php //include_once("action/crearCv.php");?>
-                <embed src="archivos/pdf1.pdf #toolbar=0&navpanes=0&scrollbar=0" type="application/pdf" width="100%" height="600px"/>
+                <?php include_once("action/crearCv.php");?>
+                <embed src="<?php echo "archivos/".$nombrePdf.".pdf"; ?> #toolbar=0&navpanes=0&scrollbar=0" type="application/pdf" width="100%" height="600px"/>
             </div>
         </div>
          <section class="col-sm-3 p-2">
@@ -35,9 +35,7 @@ $pagSeleccionada = "Mostrar CV";
             </div>
         </section>
     </div>
-
-
-
+    
     <?php include_once($ESTRUCTURA . "/pie.php"); ?>
     <script src="<?php echo $JS ?>/validar.js"></script>
     <style>

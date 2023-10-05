@@ -1,5 +1,5 @@
 <?php
-    include_once("../../config.php");
+    include_once("../config.php");
     $pagSeleccionada = "Demo";
 
     $colDatos = devolverDatos();
@@ -13,45 +13,48 @@
     $expLaboral = $colDatos ["expLaboral"];
     $conocimientos = $colDatos ["conocimientos"];
     $sobreMi = $colDatos ["sobreMi"];
+
+
     use Dompdf\Dompdf;
-    $dompdf = new Dompdf();
+    use Dompdf\Option;
+    use Dompdf\Exception as DomException;
+    use Dompdf\Options;
+    try 
+    {
+        ob_start();
+        include "plantillaCv/plantilla.php";
+        $contenido = ob_get_clean();
 
-    
-    
-    $options = $dompdf->getOptions();
+        $nombrePdf = "cvNro".rand(1, 100);
 
-    //$options->setRootDir('ClasesUtiles\vista\archivos');
-    //$dompdf->setOptions($options);
-    
-    
-    /*
-    $wireTempDir = files()->tempDir('test');
-    file_put_contents($wireTempDir . '/temp.pdf', $output);
-    */
-
-    ob_start();
-    include "../plantillaCv/plantilla.php";
-    print_r($options);
-    $html = ob_get_clean();
-    
-    $dompdf->loadHtml($html);
-    $dompdf->render();
-    
-    header("Content-type: application/pdf");
-    //header('Content-Disposition: attachment; filename="downloaded.pdf"'); descargar
-    header("Content-Disposition: inline; filename=documento.pdf");
-    
-    //$dompdf->stream();
-    echo $dompdf->output();
+        // Opciones para prevenir errores con carga de imágenes
+        $options = new Options();
+        $options->set('isRemoteEnabled', true);
+        // Instancia de la clase
+        $dompdf = new Dompdf($options);
+        // Cargar el contenido HTML
+        $dompdf->loadHtml($contenido);
+        // Formato y tamaño del PDF
+        $dompdf->setPaper('A4', 'portrait');
+        // Renderizar HTML como PDF
+        $dompdf->render();
+        // Salida para descargar
+        
+        // $dompdf->stream($nombrePdf . ".pdf", ['Attachment' => false]); Muestra el PDF
+        
+        // Guardar el PDF en un archivo
+        $archivoPdf = $dompdf->output();
+        $ubicacionPdf = 'archivos/' . $nombrePdf . '.pdf';
+        file_put_contents($ubicacionPdf, $archivoPdf);
+    } 
+    catch (Exception $e) 
+    {
+        // Otros errores
+        echo "Error";
+    } 
+    catch (DomException $e) 
+    {
+        // Error domPdf
+        echo "Error DOMPDF";
+    };
 ?> 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <p>a</p>
-</body>
-</html>

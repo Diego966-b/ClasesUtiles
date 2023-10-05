@@ -1,6 +1,3 @@
-<?php
-    include_once("../../config.php");
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,37 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        * { color:red; }
+        /* { color:red; } */
     </style>
 </head>
 <body>
     <div class="fw-bold">
         <p class="text-danger"> Nombre: <?php echo $nombre; ?></p>
-        <?php 
-            echo "<div class='text-info'>";
-            echo "<p>";
-            echo "Nombre: ".$nombre;
-            echo "<br>";
-            echo "Apellido: ".$apellido;
-            echo "<br>";
-            echo "Edad: ".$edad;
-            echo "<br>";
-            echo "Telefono: ".$telefono;
-            echo "<br>";
-            echo "Mail: ".$mail;
-            echo "<br>";
-            echo "Estudios: ".$estudios;
-            echo "<br>";
-            echo "Residencia: ".$residencia;
-            echo "<br>";
-            echo "Experiencia laboral:".$expLaboral;
-            echo "<br>";
-            echo "Conocimientos: ".$conocimientos;
-            echo "<br>";
-            echo "Sobre Mi: ".$sobreMi;
-            echo "</p>";
-            echo "</div>";
-        ?>
+        <p class="text-danger"> Apellido: <?php echo $apellido; ?></p>
+        <p class="text-danger"> Edad: <?php echo $edad; ?></p>
+        <p class="text-danger"> Telefono: <?php echo $telefono; ?></p>
+        <p class="text-danger"> Mail: <?php echo $mail; ?></p>
+        <p class="text-danger"> Estudios: <?php echo $estudios; ?></p>
+        <p class="text-danger"> Residencia: <?php echo $residencia; ?></p>
+        <p class="text-danger"> Experiencia Laboral: <?php echo $expLaboral; ?></p>
+        <p class="text-danger"> conocimientos: <?php echo $conocimientos; ?></p>
+        <p class="text-danger"> Sobre Mi: <?php echo $sobreMi; ?></p>
     </div>
 </body>
 </html>

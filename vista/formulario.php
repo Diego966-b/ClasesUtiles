@@ -12,11 +12,11 @@
 <body>
     <?php include_once($ESTRUCTURA."/cabecera.php"); ?>
     <h1 class="text-center">Demo</h1>
-    <form method="post" name="form" id="form" action="./action/crearCv.php">
+    <form method="post" name="form" id="form" action="mostrarCv.php">
         <div class="container mb-3">
             <!-- Nombre: -->
             <label for="nombre" class="form-label">Nombres:</label>
-            <input type="text" id="nombre" name="nombre" class="form-control" aria-describedby="emailHelp" value="Diego">
+            <input type="text" id="nombre" name="nombre" class="form-control" aria-describedby="nombreHelp" value="Diego">
             <div id="nombreHelp" class="form-text">Incluya todos sus nombres.</div>
             <!-- Apellido: -->
             <label for="apellido" class="form-label">Apellidos:</label>
@@ -24,28 +24,28 @@
             <div id="apellidoHelp" class="form-text">Incluya todos sus apellidos.</div>
             <!-- Edad: -->
             <label for="edad" class="form-label">Edad:</label>
-            <input type="number" id="edad" name="edad" class="form-control"value="51">
+            <input type="number" id="edad" name="edad" class="form-control" value="51">
             <!-- Telefono: -->
             <label for="telefono" class="form-label">Telefono:</label>
-            <input type="number" id="telefono" name="telefono" class="form-control"value="1651651561867">
+            <input type="number" id="telefono" name="telefono" class="form-control" value="1651651561867">
             <!-- Mail: -->
             <label for="mail" class="form-label">Mail:</label>
-            <input type="email" id="mail" name="mail" class="form-control"value="diego@gmail.com">
+            <input type="email" id="mail" name="mail" class="form-control" value="diego@gmail.com">
             <!-- Estudios: -->
             <label for="estudios" class="form-label">Estudios:</label>
-            <textarea class="form-control" id="estudios" name="estudios" rows="3"value="secundario"></textarea>
+            <textarea class="form-control" id="estudios" name="estudios" rows="3" >grdikopjgdoiugphdrjgipordpjgrdoipgrjdgrdgioprdjhgioprdagjsgrdikopjgdoiugphdrjgipordpjgrdoipgrjdgrdgioprdjhgioprdagjsdroipgjdsrog90isrdjgosidrdroipgjdsrog90isrdjgosidr</textarea>
             <!-- Residencia: -->
             <label for="residencia" class="form-label">Residencia:</label>
             <input type="text" id="residencia" name="residencia" class="form-control"value="Neuquen">
             <!-- Experiencia laboral: -->
             <label for="expLaboral" class="form-label">Experiencia laboral:</label>
-            <textarea class="form-control" id="expLaboral" name="expLaboral" rows="3"value="grdikopjgdoiugphdrjgipordpjgrdoipgrjdgrdgioprdjhgioprdagjsgrdikopjgdoiugphdrjgipordpjgrdoipgrjdgrdgioprdjhgioprdagjsdroipgjdsrog90isrdjgosidrdroipgjdsrog90isrdjgosidr"></textarea>
+            <textarea class="form-control" id="expLaboral" name="expLaboral" rows="3">grdikopjgdoiugphdrjgipordpjgrdoipgrjdgrdgioprdjhgioprdagjsgrdikopjgdoiugphdrjgipordpjgrdoipgrjdgrdgioprdjhgioprdagjsdroipgjdsrog90isrdjgosidrdroipgjdsrog90isrdjgosidr</textarea>
             <!-- Conocimientos: -->
             <label for="conocimientos" class="form-label">Conocimientos:</label>
             <input type="text" id="conocimientos" name="conocimientos" class="form-control"value="grdikopjgdoiugphdrjgipordpjgrdoipgrjdgrdgioprdjhgioprdagjsdroipgjdsrog90isrdjgosidrgrdikopjgdoiugphdrjgipordpjgrdoipgrjdgrdgioprdjhgioprdagjsdroipgjdsrog90isrdjgosidr">
             <!-- Sobre mi: -->
             <label for="sobreMi" class="form-label">Sobre mi:</label>
-            <textarea class="form-control" id="sobreMi" name="sobreMi" rows="3"value="grdikopjgdoiugphdrjgipordpjgrdoipgrjdgrdgioprdjhgioprdagjsdroipgjdsrog90isrdjgosidrgrdikopjgdoiugphdrjgipordpjgrdoipgrjdgrdgioprdjhgioprdagjsdroipgjdsrog90isrdjgosidr"></textarea>
+            <textarea class="form-control" id="sobreMi" name="sobreMi" rows="3">grdikopjgdoiugphdrjgipordpjgrdoipgrjdgrdgioprdjhgioprdagjsgrdikopjgdoiugphdrjgipordpjgrdoipgrjdgrdgioprdjhgioprdagjsdroipgjdsrog90isrdjgosidrdroipgjdsrog90isrdjgosidr</textarea>
             <br>
             <input type="submit" name="enviar" id="enviar" value="Enviar" class="btn btn-outline-dark btn-sm">
             <input type="reset" name="reiniciar" id="reiniciar" value="Reiniciar" class="btn btn-outline-dark btn-sm">
