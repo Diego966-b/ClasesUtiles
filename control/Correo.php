@@ -43,7 +43,7 @@ class Correo
             'connection_class'  => 'login',
             'connection_config' => [
                 'username' => 'diego.benjamin@est.fi.uncoma.edu.ar', // Tu mail
-                'password' => '2994563862', // Tu contraseña
+                'password' => '', // Tu contraseña
                 'ssl'      => 'tls',
             ],
         ]);
