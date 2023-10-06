@@ -11,6 +11,7 @@
     $expLaboral = $colDatos ["expLaboral"];
     $conocimientos = $colDatos ["conocimientos"];
     $sobreMi = $colDatos ["sobreMi"];
+    $tipoPlantilla= $colDatos["tipoPlantilla"];
 ?>
 <!DOCTYPE html>
 <html lang="en"> 
@@ -25,7 +26,7 @@
         <div class="col-6 p-3 mb-2 container-lg">
             <div class="container-xl">
                 <?php                     
-                    $curriculum = new Curriculum($nombre, $apellido, $edad, $telefono, $mail, $estudios, $residencia, $expLaboral, $conocimientos, $sobreMi);
+                    $curriculum = new Curriculum($nombre, $apellido, $edad, $telefono, $mail, $estudios, $residencia, $expLaboral, $conocimientos, $sobreMi,$tipoPlantilla);
                     $nombrePdf = $curriculum -> generarCv();
                 ?>
                 <embed src="<?php echo "archivos/".$nombrePdf; ?> #toolbar=0&navpanes=0&scrollbar=0" type="application/pdf" width="100%" height="600px"/>

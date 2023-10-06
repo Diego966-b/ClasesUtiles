@@ -9,7 +9,7 @@ class Curriculum
     
     // Atributos
 
-    private $nombre, $apellido, $edad, $telefono, $mail, $estudios, $residencia, $expLaboral, $conocimientos, $sobreMi;
+    private $nombre, $apellido, $edad, $telefono, $mail, $estudios, $residencia, $expLaboral, $conocimientos, $sobreMi,$tipoPlantilla;
     private $ubicacionPdf; // No se usa!!!
 
     // Métodos 
@@ -17,7 +17,7 @@ class Curriculum
     /**
      * Recibe los valores iniciales para los atributos
      */
-    public function __construct($nombre, $apellido, $edad, $telefono, $mail, $estudios, $residencia, $expLaboral, $conocimientos, $sobreMi)
+    public function __construct($nombre, $apellido, $edad, $telefono, $mail, $estudios, $residencia, $expLaboral, $conocimientos, $sobreMi, $tipoPlantilla)
     {
         $this -> nombre = $nombre;
         $this -> apellido = $apellido;
@@ -29,6 +29,7 @@ class Curriculum
         $this -> expLaboral = $expLaboral;
         $this -> conocimientos = $conocimientos;
         $this -> sobreMi = $sobreMi;
+        $this -> tipoPlantilla =$tipoPlantilla ;
     }
 
     /**
@@ -48,10 +49,23 @@ class Curriculum
         $expLaboral = $this -> getExpLaboral();
         $conocimientos = $this -> getConocimientos();
         $sobreMi = $this -> getSobreMi();
-
-        ob_start();
-        include "plantillaCv/plantilla.php";
-        $contenido = ob_get_clean();
+        $tipoPlantilla=$this->getTipoPlantilla();
+        if($tipoPlantilla==1){
+            ob_start();
+            include "plantillaCv/plantilla.php";
+            $contenido = ob_get_clean();
+        }else if($tipoPlantilla==2){
+            ob_start();
+            include "plantillaCv/plantilla2.php";
+            $contenido = ob_get_clean();
+        }elseif($tipoPlantilla==3){
+            ob_start();
+            include "plantillaCv/plantilla3.php";
+            $contenido = ob_get_clean();
+        }else{
+            $contenido="<h1>Erro en las plantillas</h1>";
+        }
+        
         $nombrePdf = $nombre."-".$apellido."CV.pdf";
         // Opciones para prevenir errores con carga de imágenes
         $options = new Options();
@@ -85,6 +99,14 @@ class Curriculum
     }
 
     // Métodos get
+  /**
+     * Get de tipoPlantilla
+     * @return string
+     */
+    public function getTipoPlantilla ()
+    {
+        return $this -> tipoPlantilla;
+    }
 
     /**
      * Get de nombre
@@ -185,7 +207,15 @@ class Curriculum
     }
 
     // Métodos set
-
+    
+    /** 
+     * Set de nombre
+     * @param string $tipoPlantilla
+     */
+    public function setTipoPlantilla ($tipoPlantilla)
+    {
+        $this -> tipoPlantilla = $tipoPlantilla;
+    }
     /** 
      * Set de nombre
      * @param string $nombreNuevo
