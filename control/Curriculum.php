@@ -1,10 +1,16 @@
 <?php
+include_once("../config.php");
+use Dompdf\Dompdf;
+use Dompdf\Option;
+use Dompdf\Exception as DomException;
+use Dompdf\Options;
 class Curriculum
 {
     
     // Atributos
 
     private $nombre, $apellido, $edad, $telefono, $mail, $estudios, $residencia, $expLaboral, $conocimientos, $sobreMi;
+    private $ubicacionPdf; // No se usa!!!
 
     // Métodos 
     
@@ -26,19 +32,56 @@ class Curriculum
     }
 
     /**
-     * Descargar PDF
+     * Genera el pdf y lo guarda en la carpeta archivos.
+     * Setea ubicacionPdf con directorio del pdf generado.
+     * @return string
      */
-    public function descargarPdf ()
+    public function generarCv ()
     {
+        $nombre = $this -> getNombre();
+        $apellido = $this -> getApellido();
+        $edad = $this -> getEdad();
+        $telefono = $this -> getTelefono();
+        $mail = $this -> getMail();
+        $estudios = $this -> getEstudios();
+        $residencia = $this -> getResidencia();
+        $expLaboral = $this -> getExpLaboral();
+        $conocimientos = $this -> getConocimientos();
+        $sobreMi = $this -> getSobreMi();
 
+        ob_start();
+        include "plantillaCv/plantilla.php";
+        $contenido = ob_get_clean();
+        $nombrePdf = $nombre."-".$apellido."CV.pdf";
+        // Opciones para prevenir errores con carga de imágenes
+        $options = new Options();
+        $options->set('isRemoteEnabled', true);
+        // Instancia de la clase
+        $dompdf = new Dompdf($options);
+        // Cargar el contenido HTML
+        $dompdf->loadHtml($contenido);
+        // Formato y tamaño del PDF
+        $dompdf->setPaper('A4', 'portrait');
+        // Renderizar HTML como PDF
+        $dompdf->render();
+        // Guardar el PDF en un archivo
+        $archivoPdf = $dompdf->output();
+        $ubicacionPdf = 'archivos/' . $nombrePdf;
+        file_put_contents($ubicacionPdf, $archivoPdf);
+        return $nombrePdf;
     }
 
     /**
-     * Mostrar PDF
+     * Descarga el pdf y luego lo borra.
+     * @return string
      */
-    public function mostrarPdf ()
+    public function descargarCv ()
     {
-
+        $nombrePdf = $this -> generarCv();
+        $options = new Options();
+        $options->set('isRemoteEnabled', true);
+        $dompdf = new Dompdf($options);
+        return $nombrePdf;
     }
 
     // Métodos get
@@ -132,6 +175,14 @@ class Curriculum
     {
         return $this -> sobreMi;
     }
+    /**
+     * Get de ubicacionPdf
+     * @return string
+     */
+    public function getUbicacionPdf ()
+    {
+        return $this -> ubicacionPdf;
+    }
 
     // Métodos set
 
@@ -223,6 +274,15 @@ class Curriculum
     public function setSobreMi ($sobreMiNuevo)
     {
         $this -> sobreMi = $sobreMiNuevo;
+    }
+
+    /** 
+     * Set de ubicacionPdf
+     * @param string $ubicacionPdfNuevo
+     */
+    public function setUbicacionPdf ($ubicacionPdfNuevo)
+    {
+        $this -> ubicacionPdf = $ubicacionPdfNuevo;
     }
 
     // Método __toString

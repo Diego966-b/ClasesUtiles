@@ -37,7 +37,7 @@
                             </div>
                             Plantilla 1
                             <div class="form-check  d-flex  justify-content-center ">
-                                <input class="form-check-input" type="radio" name="tipoPlantilla" id="tipoPlantilla" value="3">
+                                <input class="form-check-input" type="radio" name="tipoPlantilla" id="tipoPlantilla" value="1">
                             </div>
                         </div>
                         <div class="col  p-3 m-3">
@@ -46,7 +46,7 @@
                             </div>
                             Plantilla 2
                             <div class="form-check d-flex  justify-content-center  ">
-                                <input class="form-check-input" type="radio" name="tipoPlantilla" id="tipoPlantilla" value="3" checked>
+                                <input class="form-check-input" type="radio" name="tipoPlantilla" id="tipoPlantilla" value="2" checked>
                             </div>
                         </div>
                         <div class="col  p-3 m-3">

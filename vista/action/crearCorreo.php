@@ -14,9 +14,5 @@
     echo $nombrePdf;
     echo "<br>";
     $objCorreo = new Correo($emisor, $destinatario, $asunto, $nombrePdf);
-    $exito = $objCorreo -> enviarCorreo();
-    if ($exito)
-    {
-        echo "enviado";
-    }
+    $objCorreo -> enviarCorreo();
 ?>

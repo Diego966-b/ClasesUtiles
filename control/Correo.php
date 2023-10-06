@@ -1,40 +1,43 @@
 <?php
 include_once("../../config.php");
+
 use Laminas\Mail\Message;
-use Laminas\Mail\Transport\File as FileTransport;
-use Laminas\Mail\Transport\FileOptions;
-use Laminas\Math\Rand;
 use Laminas\Mail\Transport\Smtp as SmtpTransport;
 use Laminas\Mail\Transport\SmtpOptions;
+
+use Laminas\Mime\Message as MimeMessage;
+use Laminas\Mime\Mime;
+use Laminas\Mime\Part as MimePart;
+
 class Correo
 {
-    
+
     // Atributos
 
     private $nombreEmisor, $emailDestino, $asunto, $nombrePdf;
 
     // Métodos 
-    
+
     /**
      * Recibe los valores iniciales para los atributos
      * @param 
      */
     public function __construct($nombreEmisor, $emailDestino, $asunto, $nombrePdf)
     {
-        $this -> nombreEmisor = $nombreEmisor;
-        $this -> emailDestino = $emailDestino;
-        $this -> asunto = $asunto;
-        $this -> nombrePdf = $nombrePdf;
+        $this->nombreEmisor = $nombreEmisor;
+        $this->emailDestino = $emailDestino;
+        $this->asunto = $asunto;
+        $this->nombrePdf = $nombrePdf;
     }
 
     /**
-     * Envia un correo
+     * Envia un correo. Retorna un booleano segun su exito.
+     * @return boolean
      */
-    public function enviarCorreo ()
+    public function enviarCorreo()
     {
-        $exito = false;
-        $emailDestino = $this -> getEmailDestino();
-        $asunto = $this -> getAsunto();
+        $emailDestino = $this->getEmailDestino();
+        $asunto = $this->getAsunto();
         $transportMail = new SmtpTransport();
         $optionsMail = new SmtpOptions([
             'name'              => 'smtp.gmail.com',
@@ -49,31 +52,57 @@ class Correo
         ]);
         $transportMail->setOptions($optionsMail);
         
+        // Setup File transport
+        $nombrePdf = $this->getNombrePdf();
+
+        $textContent = 'Testing';
+        $htmlMarkup = '<h1>HTML Content</h1>';
+        $attachments = "../archivos/".$nombrePdf;
+
         $message = new Message();
         $message->addTo($emailDestino);
         $message->addFrom('diego.benjamin@est.fi.uncoma.edu.ar');
         $message->setSubject($asunto);
         $message->setBody("CV Generado con ...");
 
-        // Setup File transport
-        
-        $transportArchivo = new FileTransport();
-        $optionsArchivo   = new FileOptions([
-            'path'     => '../archivos/',
-            'callback' => function (FileTransport $transportArchivo) {
-                $nombrePdf = $this -> getNombrePdf();
-                return $nombrePdf;
-            },
-        ]);
-        $transportArchivo->setOptions($optionsArchivo);
-        print_r($transportMail);
-        if (($transportArchivo <> null) && ($transportMail <> null))
-        {
-            $exito = true;
-        }
+        $body = new MimeMessage();
+
+        $text           = new MimePart($textContent);
+        $text->type     = Mime::TYPE_TEXT;
+        $text->charset  = 'utf-8';
+        $text->encoding = Mime::ENCODING_QUOTEDPRINTABLE;
+
+        $html           = new MimePart($htmlMarkup);
+        $html->type     = Mime::TYPE_HTML;
+        $html->charset  = 'utf-8';
+        $html->encoding = Mime::ENCODING_QUOTEDPRINTABLE;
+
+        $content = new MimeMessage();
+        // This order is important for email clients to properly display the correct version of the content
+        $content->setParts([$text, $html]);
+
+        $contentPart = new MimePart($content->generateMessage());
+
+
+        $file              = new MimePart(fopen($attachments, 'r'));
+        $file->type        = Mime::TYPE_OCTETSTREAM;
+        $file->filename    = $attachments;
+        $file->disposition = Mime::DISPOSITION_ATTACHMENT;
+        $file->encoding    = Mime::ENCODING_BASE64;
+
+        $body = new MimeMessage();
+        $body->setParts([$contentPart, $file]);
+
+
+
+        //$message = new Message();
+        $message->setBody($body);
+
+
+        $contentTypeHeader = $message->getHeaders()->get('Content-Type');
+        $contentTypeHeader->setType('multipart/related');
 
         $transportMail->send($message);
-        return $exito;
     }
 
     // Métodos get
@@ -82,36 +111,36 @@ class Correo
      * Get de nombreEmisor
      * @return string
      */
-    public function getNombreEmisor ()
+    public function getNombreEmisor()
     {
-        return $this -> nombreEmisor;
+        return $this->nombreEmisor;
     }
 
     /**
      * Get de emailDestino
      * @return string
      */
-    public function getEmailDestino ()
+    public function getEmailDestino()
     {
-        return $this -> emailDestino;
+        return $this->emailDestino;
     }
 
     /**
      * Get de asunto
      * @return string
      */
-    public function getAsunto ()
+    public function getAsunto()
     {
-        return $this -> asunto;
+        return $this->asunto;
     }
 
     /**
      * Get de nombrePdf
      * @return string
      */
-    public function getNombrePdf ()
+    public function getNombrePdf()
     {
-        return $this -> nombrePdf;
+        return $this->nombrePdf;
     }
 
     // Métodos set
@@ -120,42 +149,41 @@ class Correo
      * Set de nombreEmisor
      * @param string $nombreEmisorNuevo
      */
-    public function setNombreEmisor ($nombreEmisorNuevo)
+    public function setNombreEmisor($nombreEmisorNuevo)
     {
-        $this -> nombreEmisor = $nombreEmisorNuevo;
+        $this->nombreEmisor = $nombreEmisorNuevo;
     }
 
     /**
      * Set de emailDestino
      * @param string $emailDestinoNuevo
      */
-    public function setEmailDestino ($emailDestinoNuevo)
+    public function setEmailDestino($emailDestinoNuevo)
     {
-        $this -> emailDestino = $emailDestinoNuevo;
+        $this->emailDestino = $emailDestinoNuevo;
     }
 
     /**
      * Set de asunto
      * @param string $asuntoNuevo
      */
-    public function setAsunto ($asuntoNuevo)
+    public function setAsunto($asuntoNuevo)
     {
-        $this -> asunto = $asuntoNuevo;
+        $this->asunto = $asuntoNuevo;
     }
 
     /**
      * Set de nombrePdf
      * @param string $nombrePdfNuevo
      */
-    public function setNombrePdf ($nombrePdfNuevo)
+    public function setNombrePdf($nombrePdfNuevo)
     {
-        $this -> nombrePdf = $nombrePdfNuevo;
+        $this->nombrePdf = $nombrePdfNuevo;
     }
 
     // Método __toString
 
-    public function __toString ()
+    public function __toString()
     {
-
     }
 }
