@@ -99,7 +99,8 @@ class Curriculum
     }
 
     // Métodos get
-  /**
+    
+    /**
      * Get de tipoPlantilla
      * @return string
      */

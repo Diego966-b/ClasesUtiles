@@ -1,5 +1,6 @@
 <?php
     include_once("../config.php");
+    $pagSeleccionada = "Demo";
     $colDatos = devolverDatos();
     $nombre = $colDatos ["nombre"];
     $apellido = $colDatos ["apellido"];
@@ -25,17 +26,18 @@
     <div class="container-fluid">
         <div class="col-6 p-3 mb-2 container-lg">
             <div class="container-xl">
+                <h2 class="text-center m-0 pb-3">Vista previa del CV</h2>
                 <?php                     
-                    $curriculum = new Curriculum($nombre, $apellido, $edad, $telefono, $mail, $estudios, $residencia, $expLaboral, $conocimientos, $sobreMi,$tipoPlantilla);
+                    $curriculum = new Curriculum($nombre, $apellido, $edad, $telefono, $mail, $estudios, $residencia, $expLaboral, $conocimientos, $sobreMi, $tipoPlantilla);
                     $nombrePdf = $curriculum -> generarCv();
                 ?>
                 <embed src="<?php echo "archivos/".$nombrePdf; ?> #toolbar=0&navpanes=0&scrollbar=0" type="application/pdf" width="100%" height="600px"/>
             </div>
         </div>
         <div class="col-2 p-3 mb-2 d-lg-flex container-xl" >
-            <button class="btn btn-success">Descargar</button>
+            <button class="btn btn-outline-dark">Descargar</button>
             <form method="post" name="enviar" id="enviar" action="enviarCorreo.php">
-                <input class="btn btn-primary" type="submit" value="Enviar Correo">
+                <input class="btn btn-outline-dark" type="submit" value="Enviar Correo">
                     <!-- Enviar Correo <img src="imagenes/mensaje.gif" alt="" style="width: 25px; height: 25px;"> -->
                 <input type="text" value="<?php echo $nombrePdf; ?>" name="nombrePdf" id="nombrePdf" hidden>
             </form>

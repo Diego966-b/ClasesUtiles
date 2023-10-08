@@ -11,9 +11,9 @@
 </head>
 <body>
     <?php include_once($ESTRUCTURA."/cabecera.php"); ?>
-    <h1 class="text-center">Demo</h1>
-    <form method="post" name="form" id="form" action="mostrarCv.php">
+    <form method="post" name="formDatosParaCv" id="formDatosParaCv" action="mostrarCv.php">
         <div class="container mb-3">
+            <h2 class="text-center m-0 py-2">Ingrese sus datos para generar el CV</h2>
             <!-- Nombre: -->
             <label for="nombre" class="form-label">Nombres:</label>
             <input type="text" id="nombre" name="nombre" class="form-control" aria-describedby="nombreHelp" value="Diego">
@@ -47,13 +47,15 @@
             <label for="sobreMi" class="form-label">Sobre mi:</label>
             <textarea class="form-control" id="sobreMi" name="sobreMi" rows="3">grdikopjgdoiugphdrjgipordpjgrdoipgrjdgrdgioprdjhgioprdagjsgrdikopjgdoiugphdrjgipordpjgrdoipgrjdgrdgioprdjhgioprdagjsdroipgjdsrog90isrdjgosidrdroipgjdsrog90isrdjgosidr</textarea>
             <br>
-            <input type="submit" name="enviar" id="enviar" value="Enviar" class="btn btn-outline-dark btn-sm">
-            <input type="reset" name="reiniciar" id="reiniciar" value="Reiniciar" class="btn btn-outline-dark btn-sm">
+            <div class="text-center">
+                <input type="submit" name="enviar" id="enviar" value="Enviar" class="btn btn-outline-dark">
+                <input type="reset" name="reiniciar" id="reiniciar" value="Reiniciar" class="btn btn-outline-dark">
+            </div>
             <!-- Input oculto del tipo de plantilla -->
             <input hidden type="text" name="tipoPlantilla" id="tipoPlantilla" value="<?php echo $tipoPlantilla;?>">
             <br><br><br><br><br>
         </div>
     </form>
     <?php include_once($ESTRUCTURA."/pie.php"); ?>
-    <script src="<?php echo $JS?>/validar.js"></script>
+    <script src="<?php echo $JS; ?>/validar.js"></script>
 </body>

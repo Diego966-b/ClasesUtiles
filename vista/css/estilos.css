@@ -1,0 +1,17 @@
+/* seleccionPlantilla.php y enviarCorreo.php*/
+/* Estilos para la caja vacía */
+.caja-vacia {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    width: 200px;
+    /* Ancho deseado de la caja */
+    height: 300px;
+    /* Alto deseado de la caja */
+    border: 2px solid #000;
+    /* Borde negro de 2 píxeles */
+}
+.margenInferior {
+    margin-bottom: 90px;
+}   
+/* */

@@ -31,11 +31,13 @@ class Correo
     }
 
     /**
-     * Envia un correo. Retorna un booleano segun su exito.
+     * Envia un correo. Retorna un string segun su exito.
      * @return boolean
      */
     public function enviarCorreo()
     {
+        $resultado = [];
+        $exito = "no";
         $emailDestino = $this->getEmailDestino();
         $asunto = $this->getAsunto();
         $transportMail = new SmtpTransport();
@@ -63,7 +65,7 @@ class Correo
         $message->addTo($emailDestino);
         $message->addFrom('diego.benjamin@est.fi.uncoma.edu.ar');
         $message->setSubject($asunto);
-        $message->setBody("CV Generado con ...");
+        $message->setBody("CV Generado con generadorCv.com. Visitanos para generar tu propio CV!");
 
         $body = new MimeMessage();
 
@@ -102,7 +104,22 @@ class Correo
         $contentTypeHeader = $message->getHeaders()->get('Content-Type');
         $contentTypeHeader->setType('multipart/related');
 
-        $transportMail->send($message);
+        try {
+            $transportMail->send($message);
+            $resultado ["exito"] = "si";
+            $resultado ["mensajeError"] = "";
+        } catch (Laminas\Mail\Exception\ExceptionInterface $e) {
+            // Error de laminas-mail
+            $mensajeError = $e->getMessage();
+            $resultado ["exito"] = "errorLaminas";
+            $resultado ["mensajeError"] = $mensajeError;
+        } catch (\Exception $e) {
+            // Error general
+            $mensajeError = $e->getMessage();
+            $resultado ["exito"] = "errorGeneral";
+            $resultado ["mensajeError"] = $mensajeError;
+        }
+        return $resultado;
     }
 
     // Métodos get
