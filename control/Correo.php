@@ -1,6 +1,12 @@
 <?php
-include_once("../../config.php");
-
+if (file_exists("../utils/laminasMail/vendor/autoload.php"))
+{
+    include_once ("../utils/laminasMail/vendor/autoload.php");
+}
+elseif (file_exists("../../utils/laminasMail/vendor/autoload.php"))
+{
+    include_once ("../../utils/laminasMail/vendor/autoload.php");
+}
 use Laminas\Mail\Message;
 use Laminas\Mail\Transport\Smtp as SmtpTransport;
 use Laminas\Mail\Transport\SmtpOptions;
@@ -37,7 +43,6 @@ class Correo
     public function enviarCorreo()
     {
         $resultado = [];
-        $exito = "no";
         $emailDestino = $this->getEmailDestino();
         $asunto = $this->getAsunto();
         $transportMail = new SmtpTransport();
@@ -53,19 +58,16 @@ class Correo
             ],
         ]);
         $transportMail->setOptions($optionsMail);
-        
-        // Setup File transport
+
         $nombrePdf = $this->getNombrePdf();
 
-        $textContent = 'Testing';
-        $htmlMarkup = '<h1>HTML Content</h1>';
+        $textContent = 'Este pdf fue generado con la pagina generadorPdf.com.';
         $attachments = "../archivos/".$nombrePdf;
 
         $message = new Message();
         $message->addTo($emailDestino);
         $message->addFrom('diego.benjamin@est.fi.uncoma.edu.ar');
         $message->setSubject($asunto);
-        $message->setBody("CV Generado con generadorCv.com. Visitanos para generar tu propio CV!");
 
         $body = new MimeMessage();
 
@@ -74,18 +76,6 @@ class Correo
         $text->charset  = 'utf-8';
         $text->encoding = Mime::ENCODING_QUOTEDPRINTABLE;
 
-        $html           = new MimePart($htmlMarkup);
-        $html->type     = Mime::TYPE_HTML;
-        $html->charset  = 'utf-8';
-        $html->encoding = Mime::ENCODING_QUOTEDPRINTABLE;
-
-        $content = new MimeMessage();
-        // This order is important for email clients to properly display the correct version of the content
-        $content->setParts([$text, $html]);
-
-        $contentPart = new MimePart($content->generateMessage());
-
-
         $file              = new MimePart(fopen($attachments, 'r'));
         $file->type        = Mime::TYPE_OCTETSTREAM;
         $file->filename    = $attachments;
@@ -93,21 +83,18 @@ class Correo
         $file->encoding    = Mime::ENCODING_BASE64;
 
         $body = new MimeMessage();
-        $body->setParts([$contentPart, $file]);
+        $body->setParts([$text, $file]);
 
-
-
-        //$message = new Message();
         $message->setBody($body);
-
 
         $contentTypeHeader = $message->getHeaders()->get('Content-Type');
         $contentTypeHeader->setType('multipart/related');
-
         try {
             $transportMail->send($message);
             $resultado ["exito"] = "si";
             $resultado ["mensajeError"] = "";
+            $pdf = new Curriculum("","","","","","","","","","","");
+            $exito = $pdf -> borrarPdf ($nombrePdf);
         } catch (Laminas\Mail\Exception\ExceptionInterface $e) {
             // Error de laminas-mail
             $mensajeError = $e->getMessage();

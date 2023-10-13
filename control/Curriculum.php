@@ -1,5 +1,12 @@
 <?php
-include_once("../config.php");
+if (file_exists("../../utils/domPdf/vendor/autoload.php"))
+{
+    include_once ("../../utils/domPdf/vendor/autoload.php");
+}
+elseif (file_exists("../utils/domPdf/vendor/autoload.php"))
+{
+    include_once ("../utils/domPdf/vendor/autoload.php");
+}
 use Dompdf\Dompdf;
 use Dompdf\Option;
 use Dompdf\Exception as DomException;
@@ -96,6 +103,16 @@ class Curriculum
         $options->set('isRemoteEnabled', true);
         $dompdf = new Dompdf($options);
         return $nombrePdf;
+    }
+
+    /**
+     * Borra el PDF
+     * @param string $nombrePdf
+     */
+    public function borrarPdf ($nombrePdf)
+    {
+        $exito = unlink("../../vista/archivos/".$nombrePdf);
+        return $exito;
     }
 
     // Métodos get
