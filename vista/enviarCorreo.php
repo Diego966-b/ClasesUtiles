@@ -29,15 +29,15 @@
                     <input type="text" value="<?php echo $nombrePdf; ?>" name="nombrePdf" id="nombrePdf" hidden>
                     <div class="mb-3">
                         <label for="emisor" class="form-label fw-bold">Nombre Emisor:</label>
-                        <input type="text" class="form-control" id="emisor" name="emisor" value="emisor">
+                        <input type="text" class="form-control" id="emisor" name="emisor">
                     </div>
                     <div class="mb-3">
                         <label for="destinatario" class="form-label  fw-bold">Email Destino:</label>
-                        <input type="email" class="form-control" id="destinatario" name="destinatario" value="diegobennjaminn@gmail.com">
+                        <input type="email" class="form-control" id="destinatario" name="destinatario">
                     </div>
                     <div class="mb-3">
                         <label for="asunto" class="form-label fw-bold">Asunto:</label>
-                        <input type="text" class="form-control" id="asunto" name="asunto" value="asuntodwadwa">
+                        <input type="text" class="form-control" id="asunto" name="asunto">
                     </div>
                     <div class="row">
                         <div class="d-flex justify-content-center my-2 ">

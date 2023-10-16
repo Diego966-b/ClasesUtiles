@@ -72,7 +72,7 @@ class Correo
         $nombrePdf = $this->getNombrePdf();
 
         $textContent = 'Este pdf fue generado con la pagina generadorCV.com.';
-        $attachments = "../archivos/".$nombrePdf;
+        $ubicacionPdf = "../archivos/".$nombrePdf;
 
         $message = new Message();
         $message->addTo($emailDestino);
@@ -86,9 +86,9 @@ class Correo
         $text->charset  = 'utf-8';
         $text->encoding = Mime::ENCODING_QUOTEDPRINTABLE;
 
-        $file              = new MimePart(fopen($attachments, 'r'));
+        $file              = new MimePart(fopen($ubicacionPdf, 'r'));
         $file->type        = Mime::TYPE_OCTETSTREAM;
-        $file->filename    = $attachments;
+        $file->filename    = $nombrePdf;
         $file->disposition = Mime::DISPOSITION_ATTACHMENT;
         $file->encoding    = Mime::ENCODING_BASE64;
 
