@@ -10,9 +10,7 @@
 </head>
 <body>
     <div class="fw-bold">
-        <h1>
-            Plantilla 3
-        </h1>
+        <h1>Plantilla 3</h1>
         <p class="text-danger"> Nombre: <?php echo $nombre; ?></p>
         <p class="text-danger"> Apellido: <?php echo $apellido; ?></p>
         <p class="text-danger"> Edad: <?php echo $edad; ?></p>

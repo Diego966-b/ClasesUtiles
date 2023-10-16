@@ -29,26 +29,6 @@
         }
         return $colDatos;
     }
-
-    /**
-     * Convierte a array un obj
-     * @return array
-     */
-    function convetrirArray ($param)
-    {
-        $aux = [];
-        if (!empty($param))
-        {
-            if (count($param))
-            {
-                foreach ($param as $obj)
-                {
-                    array_push($aux, dismount($obj)); // !!!
-                }
-            }
-        }
-        return $aux;
-    }
     
     /**
      * Carga automaticamente una clase

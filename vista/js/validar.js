@@ -108,7 +108,7 @@ $(document).ready(function() {
                 maxlength: "El asunto es muy largo",
             },
         },
-        errorElement: "div", // Cambia el elemento utilizado para mostrar mensajes de error a 'span'
+        errorElement: "div", // Cambia el elemento utilizado para mostrar mensajes de error a 'div'
         errorClass: "text-danger", // Clase de Bootstrap para el color de texto rojo
         errorPlacement: function(error, element) 
         {   
