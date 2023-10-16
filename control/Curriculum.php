@@ -1,4 +1,5 @@
 <?php
+/*
 if (file_exists("../../utils/domPdf/vendor/autoload.php"))
 {
     include_once ("../../utils/domPdf/vendor/autoload.php");
@@ -6,6 +7,15 @@ if (file_exists("../../utils/domPdf/vendor/autoload.php"))
 elseif (file_exists("../utils/domPdf/vendor/autoload.php"))
 {
     include_once ("../utils/domPdf/vendor/autoload.php");
+}
+*/
+if (file_exists("../../config.php"))
+{
+    include_once ("../../config.php");
+}
+elseif (file_exists("../config.php"))
+{
+    include_once ("../config.php");
 }
 use Dompdf\Dompdf;
 use Dompdf\Option;
@@ -16,8 +26,7 @@ class Curriculum
     
     // Atributos
 
-    private $nombre, $apellido, $edad, $telefono, $mail, $estudios, $residencia, $expLaboral, $conocimientos, $sobreMi,$tipoPlantilla;
-    private $ubicacionPdf; // No se usa!!!
+    private $nombre, $apellido, $edad, $telefono, $mail, $estudios, $residencia, $expLaboral, $conocimientos, $sobreMi, $tipoPlantilla;
 
     // Métodos 
     
@@ -36,12 +45,12 @@ class Curriculum
         $this -> expLaboral = $expLaboral;
         $this -> conocimientos = $conocimientos;
         $this -> sobreMi = $sobreMi;
-        $this -> tipoPlantilla =$tipoPlantilla ;
+        $this -> tipoPlantilla = $tipoPlantilla ;
     }
 
     /**
      * Genera el pdf y lo guarda en la carpeta archivos.
-     * Setea ubicacionPdf con directorio del pdf generado.
+     * Retorna el nombre del pdf
      * @return string
      */
     public function generarCv ()
@@ -70,9 +79,8 @@ class Curriculum
             include "plantillaCv/plantilla3.php";
             $contenido = ob_get_clean();
         }else{
-            $contenido="<h1>Erro en las plantillas</h1>";
+            $contenido="<h1>Error en las plantillas</h1>";
         }
-        
         $nombrePdf = $nombre."-".$apellido."CV.pdf";
         // Opciones para prevenir errores con carga de imágenes
         $options = new Options();
@@ -93,21 +101,58 @@ class Curriculum
     }
 
     /**
-     * Descarga el pdf y luego lo borra.
-     * @return string
+     * Genera y descarga el CV en formato pdf.
      */
     public function descargarCv ()
-    {
-        $nombrePdf = $this -> generarCv();
+    {   
+        $nombre = $this -> getNombre();
+        $apellido = $this -> getApellido();
+        $edad = $this -> getEdad();
+        $telefono = $this -> getTelefono();
+        $mail = $this -> getMail();
+        $estudios = $this -> getEstudios();
+        $residencia = $this -> getResidencia();
+        $expLaboral = $this -> getExpLaboral();
+        $conocimientos = $this -> getConocimientos();
+        $sobreMi = $this -> getSobreMi();
+        $tipoPlantilla=$this->getTipoPlantilla();
+        if($tipoPlantilla==1){
+            ob_start();
+            include "../plantillaCv/plantilla.php";
+            $contenido = ob_get_clean();
+        }elseif($tipoPlantilla==2){
+            ob_start();
+            include "../plantillaCv/plantilla2.php";
+            $contenido = ob_get_clean();
+        }elseif($tipoPlantilla==3){
+            ob_start();
+            include "../plantillaCv/plantilla3.php";
+            $contenido = ob_get_clean();
+        }else{
+            $contenido="<h1>Error en las plantillas</h1>";
+        }
+        $nombrePdf = $nombre."-".$apellido."CV.pdf";
         $options = new Options();
         $options->set('isRemoteEnabled', true);
+        $options->set('isPhpEnabled', true);
         $dompdf = new Dompdf($options);
-        return $nombrePdf;
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->loadHtml($contenido);
+        // Renderiza el PDF
+        $dompdf->render();
+        // Configura los encabezados para la descarga
+        header('Content-Type: application/pdf');
+        header('Content-Disposition: attachment; filename="' . $nombrePdf . '"');
+        // Envía el PDF al navegador para su descarga
+        $archivoPdf = $dompdf->output();
+        $dompdf->stream($nombrePdf);
     }
 
     /**
-     * Borra el PDF
+     * Borra el PDF. Retorna un booleano.
+     * Recibe por parametro el nombre del pdf.
      * @param string $nombrePdf
+     * @return boolean
      */
     public function borrarPdf ($nombrePdf)
     {
@@ -215,14 +260,6 @@ class Curriculum
     {
         return $this -> sobreMi;
     }
-    /**
-     * Get de ubicacionPdf
-     * @return string
-     */
-    public function getUbicacionPdf ()
-    {
-        return $this -> ubicacionPdf;
-    }
 
     // Métodos set
     
@@ -234,6 +271,7 @@ class Curriculum
     {
         $this -> tipoPlantilla = $tipoPlantilla;
     }
+
     /** 
      * Set de nombre
      * @param string $nombreNuevo
@@ -322,15 +360,6 @@ class Curriculum
     public function setSobreMi ($sobreMiNuevo)
     {
         $this -> sobreMi = $sobreMiNuevo;
-    }
-
-    /** 
-     * Set de ubicacionPdf
-     * @param string $ubicacionPdfNuevo
-     */
-    public function setUbicacionPdf ($ubicacionPdfNuevo)
-    {
-        $this -> ubicacionPdf = $ubicacionPdfNuevo;
     }
 
     // Método __toString

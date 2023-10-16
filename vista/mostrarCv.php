@@ -12,13 +12,11 @@
     $expLaboral = $colDatos ["expLaboral"];
     $conocimientos = $colDatos ["conocimientos"];
     $sobreMi = $colDatos ["sobreMi"];
-    $tipoPlantilla= $colDatos["tipoPlantilla"];
+    $tipoPlantilla = $colDatos["tipoPlantilla"];
 ?>
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
-    <a href="https://www.flaticon.es/iconos-animados-gratis/correo-electronico" title="correo electrónico iconos animados">Correo electrónico iconos animados creados por Freepik - Flaticon</a>
-    <a href="https://www.flaticon.es/iconos-animados-gratis/descargar" title="descargar iconos animados">Descargar iconos animados creados por Freepik - Flaticon</a>
     <?php include_once($ESTRUCTURA . "/header.php"); ?>
 </head>
 <body>
@@ -27,7 +25,7 @@
         <div class="col-6 p-3 mb-2 container-lg">
             <div class="container-xl">
                 <h2 class="text-center m-0 pb-3">Vista previa del CV</h2>
-                <?php                     
+                <?php                  
                     $curriculum = new Curriculum ($nombre, $apellido, $edad, $telefono, $mail, $estudios, $residencia, $expLaboral, $conocimientos, $sobreMi, $tipoPlantilla);
                     $nombrePdf = $curriculum -> generarCv();
                 ?>
@@ -35,14 +33,24 @@
             </div>
         </div>
         <div class="col-2 p-3 mb-2 d-lg-flex container-xl">
-            <form method="post" name="enviar" id="enviar" action="action/descargarCorreo.php">
+            <form method="post" name="enviar" id="enviar" action="action/descargarCv.php">
                 <input class="btn btn-outline-dark" type="submit" value="Descargar">
-                <input type="text" value="<?php echo $curriculum;?>" id="curriculum" name="curriculum"hidden>
+                <input type="text" value="<?php echo $nombre;?>" id="nombre" name="nombre" hidden>
+                <input type="text" value="<?php echo $apellido;?>" id="apellido" name="apellido" hidden>
+                <input type="text" value="<?php echo $edad;?>" id="edad" name="edad" hidden>
+                <input type="text" value="<?php echo $telefono;?>" id="telefono" name="telefono" hidden>
+                <input type="text" value="<?php echo $mail;?>" id="mail" name="mail" hidden>
+                <input type="text" value="<?php echo $estudios;?>" id="estudios" name="estudios" hidden>
+                <input type="text" value="<?php echo $residencia;?>" id="residencia" name="residencia" hidden>
+                <input type="text" value="<?php echo $expLaboral;?>" id="expLaboral" name="expLaboral" hidden>
+                <input type="text" value="<?php echo $conocimientos;?>" id="conocimientos" name="conocimientos" hidden>
+                <input type="text" value="<?php echo $sobreMi;?>" id="sobreMi" name="sobreMi" hidden>
+                <input type="text" value="<?php echo $tipoPlantilla;?>" id="tipoPlantilla" name="tipoPlantilla" hidden>
+                <input type="text" value="<?php echo $nombrePdf;?>" id="nombrePdf" name="nombrePdf" hidden>
             </form>
             <form method="post" name="enviar" id="enviar" action="enviarCorreo.php">
                 <input class="btn btn-outline-dark" type="submit" value="Enviar Correo">
-                    <!-- Enviar Correo <img src="imagenes/mensaje.gif" alt="" style="width: 25px; height: 25px;"> -->
-                <input type="text" value="<?php echo $nombrePdf; ?>" name="nombrePdf" id="nombrePdf" hidden>
+                <input type="text" value="<?php echo $nombrePdf;?>" id="nombrePdf" name="nombrePdf" hidden>
             </form>
         </div>
     </div>

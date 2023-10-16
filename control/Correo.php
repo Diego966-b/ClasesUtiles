@@ -1,4 +1,5 @@
 <?php
+/*
 if (file_exists("../utils/laminasMail/vendor/autoload.php"))
 {
     include_once ("../utils/laminasMail/vendor/autoload.php");
@@ -6,6 +7,15 @@ if (file_exists("../utils/laminasMail/vendor/autoload.php"))
 elseif (file_exists("../../utils/laminasMail/vendor/autoload.php"))
 {
     include_once ("../../utils/laminasMail/vendor/autoload.php");
+}
+*/
+if (file_exists("../../config.php"))
+{
+    include_once ("../../config.php");
+}
+elseif (file_exists("../config.php"))
+{
+    include_once ("../config.php");
 }
 use Laminas\Mail\Message;
 use Laminas\Mail\Transport\Smtp as SmtpTransport;
@@ -61,7 +71,7 @@ class Correo
 
         $nombrePdf = $this->getNombrePdf();
 
-        $textContent = 'Este pdf fue generado con la pagina generadorPdf.com.';
+        $textContent = 'Este pdf fue generado con la pagina generadorCV.com.';
         $attachments = "../archivos/".$nombrePdf;
 
         $message = new Message();

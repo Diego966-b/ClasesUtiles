@@ -10,6 +10,9 @@ $_SESSION['ROOT'] = $ROOT;
 // Archivo funciones: 
 include_once($ROOT.'utils/funciones.php');
 
+include_once($ROOT.'utils/domPdf/vendor/autoload.php');
+include_once($ROOT.'utils/laminasMail/vendor/autoload.php'); 
+
 $ESTRUCTURA = $ROOT.'vista/estructura';
 $VISTA = '/'.$PROYECTO.'/vista';
 $UTILS = '/'.$PROYECTO.'/utils';
