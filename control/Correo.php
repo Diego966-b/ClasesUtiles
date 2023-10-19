@@ -86,8 +86,6 @@ class Correo
 
         $message->setBody($body);
 
-        // $contentTypeHeader = $message->getHeaders()->get('Content-Type');
-        // $contentTypeHeader->setType('multipart/related');
         try {
             $transportMail->send($message);
             $resultado ["exito"] = "si";
