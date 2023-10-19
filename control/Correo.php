@@ -1,14 +1,4 @@
 <?php
-/*
-if (file_exists("../utils/laminasMail/vendor/autoload.php"))
-{
-    include_once ("../utils/laminasMail/vendor/autoload.php");
-}
-elseif (file_exists("../../utils/laminasMail/vendor/autoload.php"))
-{
-    include_once ("../../utils/laminasMail/vendor/autoload.php");
-}
-*/
 if (file_exists("../../config.php"))
 {
     include_once ("../../config.php");
@@ -36,7 +26,6 @@ class Correo
 
     /**
      * Recibe los valores iniciales para los atributos
-     * @param 
      */
     public function __construct($nombreEmisor, $emailDestino, $asunto, $nombrePdf)
     {
@@ -47,8 +36,8 @@ class Correo
     }
 
     /**
-     * Envia un correo. Retorna un string segun su exito.
-     * @return boolean
+     * Envia un correo. Retorna un array segun su exito.
+     * @return array
      */
     public function enviarCorreo()
     {
@@ -97,8 +86,8 @@ class Correo
 
         $message->setBody($body);
 
-        $contentTypeHeader = $message->getHeaders()->get('Content-Type');
-        $contentTypeHeader->setType('multipart/related');
+        // $contentTypeHeader = $message->getHeaders()->get('Content-Type');
+        // $contentTypeHeader->setType('multipart/related');
         try {
             $transportMail->send($message);
             $resultado ["exito"] = "si";

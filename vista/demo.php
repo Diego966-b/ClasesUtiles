@@ -28,7 +28,9 @@
                         <div class="row">
                             <div class="col  p-3 m-3">
                                 <div class="d-flex justify-content-center">
-                                    <div class="caja-vacia "></div>
+                                    <div class="caja-vacia ">
+                                        <img src="img/plantilla.jpg" style="width:100%;">
+                                    </div>
                                 </div>
                                     <p>Plantilla 1</p>
                                 <div class="form-check d-flex justify-content-center ">
@@ -37,7 +39,9 @@
                             </div>
                             <div class="col p-3 m-3">
                                 <div class="d-flex justify-content-center">
-                                    <div class="caja-vacia "></div>
+                                    <div class="caja-vacia">
+                                        <img src="img/plantilla2.jpg" style="width:100%;">
+                                    </div>
                                 </div>
                                     <p>Plantilla 2</p>
                                 <div class="form-check d-flex  justify-content-center  ">
@@ -46,7 +50,9 @@
                             </div>
                             <div class="col  p-3 m-3">
                                 <div class="d-flex  justify-content-center">
-                                    <div class="caja-vacia "></div>
+                                    <div class="caja-vacia">
+                                        <img src="img/plantilla3.jpg" style="width:100%;">
+                                    </div>
                                 </div>
                                 <p>Plantilla 3</p>
                                 <div class="form-check d-flex justify-content-center ">

@@ -1,0 +1,17 @@
+
+*{
+    margin: 0;
+}
+code p {
+margin: 0;
+}
+
+pre{
+color: #B84844;
+width: 70%; 
+}
+
+.nota{
+background-color: lightgray;
+padding: 8px;
+}

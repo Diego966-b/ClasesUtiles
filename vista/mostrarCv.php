@@ -34,7 +34,6 @@
         </div>
         <div class="col-2 p-3 mb-2 d-lg-flex container-xl">
             <form method="post" name="enviar" id="enviar" action="action/descargarCv.php">
-                <input class="btn btn-outline-dark" type="submit" value="Descargar">
                 <input type="text" value="<?php echo $nombre;?>" id="nombre" name="nombre" hidden>
                 <input type="text" value="<?php echo $apellido;?>" id="apellido" name="apellido" hidden>
                 <input type="text" value="<?php echo $edad;?>" id="edad" name="edad" hidden>
@@ -47,6 +46,7 @@
                 <input type="text" value="<?php echo $sobreMi;?>" id="sobreMi" name="sobreMi" hidden>
                 <input type="text" value="<?php echo $tipoPlantilla;?>" id="tipoPlantilla" name="tipoPlantilla" hidden>
                 <input type="text" value="<?php echo $nombrePdf;?>" id="nombrePdf" name="nombrePdf" hidden>
+                <input class="btn btn-outline-dark" type="submit" value="Descargar">
             </form>
             <form method="post" name="enviar" id="enviar" action="enviarCorreo.php">
                 <input class="btn btn-outline-dark" type="submit" value="Enviar Correo">

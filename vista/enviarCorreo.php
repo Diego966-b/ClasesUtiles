@@ -13,7 +13,7 @@
 <body>
     <?php include_once($ESTRUCTURA . "/cabecera.php"); ?>
     <div class=" margenInferior d-flex  justify-content-center">
-        <div class="container  border m-4">
+        <div class="container border m-4">
             <div class="row border bg-dark ">
                 <div class="d-flex justify-content-center">
                     <h1 class="text-center text-white">Generador de CV</h1>

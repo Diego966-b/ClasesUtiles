@@ -1,14 +1,4 @@
 <?php
-/*
-if (file_exists("../../utils/domPdf/vendor/autoload.php"))
-{
-    include_once ("../../utils/domPdf/vendor/autoload.php");
-}
-elseif (file_exists("../utils/domPdf/vendor/autoload.php"))
-{
-    include_once ("../utils/domPdf/vendor/autoload.php");
-}
-*/
 if (file_exists("../../config.php"))
 {
     include_once ("../../config.php");
@@ -140,7 +130,7 @@ class Curriculum
         $dompdf->loadHtml($contenido);
         // Renderiza el PDF
         $dompdf->render();
-        // Configura los encabezados para la descarga
+        // Encabezados para la descarga
         header('Content-Type: application/pdf');
         header('Content-Disposition: attachment; filename="' . $nombrePdf . '"');
         // Envía el PDF al navegador para su descarga
